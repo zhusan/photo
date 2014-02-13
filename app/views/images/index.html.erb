@@ -1,0 +1,33 @@
+<table>
+  <thead>
+    <tr>
+      <th>Album</th>
+      <th>Note</th>
+      <th>Url</th>
+      <th>File name</th>
+      <th>File size</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @images.each do |image| %>
+      <tr>
+        <td><%= image.album_id %></td>
+        <td><%= image.note %></td>
+        <td><%= image.url %></td>
+        <td><%= image.file_name %></td>
+        <td><%= image.file_size %></td>
+        <td><%= link_to 'Show', image %></td>
+        <td><%= link_to 'Edit', edit_image_path(image) %></td>
+        <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Image', new_image_path %>

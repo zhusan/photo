@@ -1,0 +1,9 @@
+<tr id="album_<%= album.id %>">
+  <td><%= link_to album.name, album %></td>
+  <td><%= album.note %></td>
+  <td colspan="3">
+    <%= link_to '编辑', edit_album_path(album), class: "btn btn-warning btn-xs", remote: true %>
+    <%= link_to '删除', album, method: :delete, remote: true, data: { confirm: '确定删除?'   }, 
+        'data-skip-pjax' => true, class: "btn btn-danger btn-xs" %>
+  </td>
+</tr>

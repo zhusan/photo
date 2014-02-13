@@ -1,0 +1,64 @@
+<header>
+<h1>Login and Registration Form <span>with HTML5 and CSS3</span></h1>
+<section>
+<div id="container_demo">
+  <a class="hiddenanchor" id="toregister"></a>
+  <a class="hiddenanchor" id="tologin"></a>
+  <div id="wrapper">
+    <div id="login" class="animate form">
+      <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div class="form-inputs">
+          <p>
+          <label for="username" class="uname" data-icon="u"> Your email or username </label>
+          <%= f.input :email, label: false, :required => true, :autofocus => true, placeholder: "myusername or mymail@mail.com" %>
+          </p>
+          <p> 
+          <label for="password" class="youpasswd" data-icon="p"> Your password </label>
+          <%= f.input :password, label: false, :required => true%>
+          </p>
+          <p class="keeplogin"> 
+          <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+          </p>
+        </div>
+        <p class="login button"> 
+        <%= f.button :submit, "Sign in" %>
+        </p>
+        <p class="change_link">
+        Not a member yet ?
+        <a href="#toregister" class="to_register">Join us</a>
+        </p>
+      <% end %>
+    </div>
+
+    <div id="register" class="animate form">
+      <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <p> 
+          <label for="emailsignup" class="youmail" data-icon="e"> Your email</label>
+          <%= f.input :email, label: false,  :required => true, :autofocus => true %>
+          </p>
+          <p> 
+          <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+          <%= f.input :password, label: false, :required => true %>
+          </p>
+          <p> 
+          <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+          <%= f.input :password_confirmation, label: false, :required => true %>
+          </p>
+        </div>
+        <p class="signin button">
+        <%= f.button :submit, "Sign up" %>
+        </p>
+        <p class="change_link">  
+        Already a member ?
+        <a href="#tologin" class="to_register"> Go and log in </a>
+        </p>
+      <% end %>
+    </div>
+
+  </div>
+</div>  
+</section>
+<h2>Sign in</h2>
+<%= render "devise/shared/links" %>

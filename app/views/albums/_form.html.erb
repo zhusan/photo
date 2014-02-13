@@ -1,0 +1,70 @@
+<%= simple_form_for(@crm_deal_activity) do |f| %>
+  <% if @crm_deal_activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@crm_deal_activity.errors.count, "error") %> prohibited this crm_deal_activity from being saved:</h2>
+
+      <ul>
+      <% @crm_deal_activity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="form-group row">
+  <div class="col-md-4">
+    <%= f.input :deal_id, label: "商机", required: true, 
+    input_html: { class: "form-control" } do %>
+    <br>
+    <%= f.select :deal_id, @deal_options,{include_blank: true}, required: true %>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <%= f.input :category_id, label: "类型", required: true, 
+    input_html: { class: "form-control" } do %>
+     <br>
+    <%= f.select :category_id, @category_options ,{include_blank: true}, required: true %>
+    <% end %>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <div class="col-md-4">
+      <%= f.input :status_id, label: "状态", required: true, 
+      input_html: { class: "form-control" } do %>
+       <br>
+      <%= f.select :status_id, @statu_options ,{include_blank: true}, required: true %>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= f.label "活动时间" do  %>
+      <abbr title="required">*</abbr>活动时间
+      <% end %>
+      <br>
+      <%= f.text_field :act_at, 
+                        value: (@crm_deal_activity.act_at.strftime("%Y-%m-%d") rescue nil), 
+                        class: "form-control datepicker", required: true  %>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <div class="col-md-4">
+    <%= f.input :content, label: "内容", input_html: { class: "form-control", rows: 6, cols: 40 } %>
+    </div> 
+    <div class="col-md-4">
+      <%= f.input :note, label: "备注", input_html: { class: "form-control", rows: 6, cols: 40 } %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit '提交', class: "btn btn-success btn-lg" %>
+  </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  load_datepicker();
+</script>

@@ -1,0 +1,19 @@
+<div class="alert alert-warning form-inline">
+  <% if params[:action] == "new" %>
+    <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+  <% end %>
+
+<%= simple_form_for(@album, remote: true) do |f| %>
+    <div class="form-group">
+    <%= f.text_field :name, placeholder: "名称...", required: true, class: "form-control w300"  %>
+  </div>
+   
+  <div class="form-group">
+    <%= f.text_field :note,  placeholder: "备注...",  class: "form-control w300" %>
+  </div>
+  
+
+
+  <%= f.submit "提交", class: "btn btn-success" %>
+<% end %>
+</div>
