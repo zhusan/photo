@@ -1,58 +1,67 @@
-# config valid only for Capistrano 3.1
-lock '3.1.0'
+set :application, "set your application name here"
+require 'bundler/capistrano'
+require 'sidekiq/capistrano'
+require 'puma/capistrano'
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
-set :application, 'photo'
-set :repo_url, 'git@github.com:zhusan/photo.git'
+set :application, "architecture"
 
-# Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
-
-# Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/zs/workspace'
-
-# Default value for :scm is :git
 set :scm, :git
+set :repository,  "git@github.com:zhusan/photo.git"
 
-# Default value for :format is :pretty
-# set :format, :pretty
+set :branch, "master"
+set :stage, :production
+set :rails_env, "production"
+set :user, "zs"
+set :use_sudo, false
+set :deploy_to, "/home/zs/workspace/#{application}"
+set :app_server, :puma
 
-# Default value for :log_level is :debug
-# set :log_level, :debug
+role :web, "zhusan.net"
+role :app, "zhusan.net"
+role :db,  "zhusan.net", :primary => true
 
-# Default value for :pty is false
-# set :pty, true
-
-# Default value for :linked_files is []
-# set :linked_files, %w{config/database.yml}
-
-# Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
-# set :keep_releases, 5
+after 'deploy:finalize_update', 'deploy:symlink_db', 'private_pub:restart'
 
 namespace :deploy do
+  desc 'Symlinks the database.yml and uploads'
 
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
-    end
+  task :symlink_db, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{deploy_to}/shared/public/uploads #{release_path}/public/uploads"
   end
-
-  after :publishing, :restart
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
 end
+
+namespace :private_pub do
+  desc "Start private_pub server"
+  task :start do
+    run "cd #{current_path}; RAILS_ENV=production bundle exec rackup private_pub.ru -s thin -E production -D -P tmp/pids/private_pub.pid"
+  end
+ 
+  desc "Stop private_pub server"
+  task :stop do
+    run "cd #{current_path};if [ -f tmp/pids/private_pub.pid ] && [ -e /proc/$(cat tmp/pids/private_pub.pid) ]; then kill -9 `cat tmp/pids/private_pub.pid`; fi"
+  end
+ 
+  desc "Restart private_pub server"
+  task :restart do
+    find_and_execute_task("private_pub:stop")
+    find_and_execute_task("private_pub:start")
+  end
+end
+
+# if you want to clean up old releases on each deploy uncomment this:
+# after "deploy:restart", "deploy:cleanup"
+
+# if you're still using the script/reaper helper you will need
+# these http://github.com/rails/irs_process_scripts
+
+# If you are using Passenger mod_rails uncomment this:
+# namespace :deploy do
+#   task :start do ; end
+#   task :stop do ; end
+#   task :restart, :roles => :app, :except => { :no_release => true } do
+#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+#   end
+# end

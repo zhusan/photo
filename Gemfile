@@ -70,4 +70,9 @@ gem 'carrierwave-qiniu'
 gem "ransack" 
 #tags
 gem 'acts-as-taggable-on'
-gem 'capistrano', '~> 3.1.0'
+group :development do
+  gem 'capistrano', '2.15.5'
+end
+
+gem 'puma', '~> 2.4.0' # Use unicorn as the app server
+
