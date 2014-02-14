@@ -1,0 +1,14 @@
+defaults: &defaults
+  qiniu:
+    qiniu_access_key: ""
+    qiniu_secret_key: ""
+
+development:
+  <<: *defaults
+  neat_setting: 800
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
