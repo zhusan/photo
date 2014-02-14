@@ -1,11 +1,10 @@
 set :application, "set your application name here"
 require 'bundler/capistrano'
-require 'sidekiq/capistrano'
 require 'puma/capistrano'
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 
-set :application, "architecture"
+set :application, "photo"
 
 set :scm, :git
 set :repository,  "git@github.com:zhusan/photo.git"
