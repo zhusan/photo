@@ -75,4 +75,5 @@ group :development do
 end
 gem 'whenever', :require => false
 gem 'puma', '~> 2.4.0' # Use unicorn as the app server
-
+#队列
+gem 'sidekiq'
