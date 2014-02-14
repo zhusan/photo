@@ -70,3 +70,4 @@ gem 'carrierwave-qiniu'
 gem "ransack" 
 #tags
 gem 'acts-as-taggable-on'
+gem 'capistrano', '~> 3.1.0'
