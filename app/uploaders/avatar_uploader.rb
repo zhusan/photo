@@ -10,8 +10,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   storage :qiniu
-  self.qiniu_bucket = "zs-test"
-  self.qiniu_bucket_domain = "zs-test.qiniudn.com"
+  self.qiniu_bucket = Settings.qiniu.qiniu_bucket
+  self.qiniu_bucket_domain = Settings.qiniu.qiniu_bucket_domain
   # storage :fog
 
   # Override the directory where uploaded files will be stored.

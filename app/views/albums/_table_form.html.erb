@@ -8,8 +8,10 @@
       <%= f.text_field :name, placeholder: "名称...", required: true, class: "form-control w300"  %>
     </div>
     <div class="form-group">
-        <%= f.text_field :tag_list,  placeholder: "标签...",  class: "form-control w300" %>
-    </div>
+      <%#= f.association :tags, collection: @album.tags,  label: false, required: true, 
+        label_method: :name, value_method:  :id, input_html: { class: "form-control", id: 'tag_list' } %>
+        <%= f.text_field :tag_list,  placeholder: "标签...", id: 'tag_list',  class: "form-control w300 tag_list" %>
+      </div>
       <div class="form-group">
         <%= f.text_field :note,  placeholder: "备注...",  class: "form-control w300" %>
       </div>
@@ -17,4 +19,14 @@
     <% end %>
   </div>
   <script type="text/javascript">
-  </script>
+    $('.tag_list').selectize({
+        delimiter: ',',
+        persist: false,
+        create: function(input) {
+        return {
+          value: input,
+          text: input
+         }
+        }
+    });
+</script>
