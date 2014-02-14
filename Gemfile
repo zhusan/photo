@@ -77,3 +77,5 @@ gem 'whenever', :require => false
 gem 'puma', '~> 2.4.0' # Use unicorn as the app server
 #队列
 gem 'sidekiq'
+#net-ssh 2.8.0连接不上vps
+gem "net-ssh", "~> 2.7.0"

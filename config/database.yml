@@ -35,5 +35,5 @@ production:
   database: photo_production
   pool: 5
   username: root
-  password:
+  password: '3199333'
   host: localhost

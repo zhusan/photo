@@ -17,6 +17,7 @@ set :user, "zs"
 set :use_sudo, false
 set :deploy_to, "/home/zs/workspace/#{application}"
 set :app_server, :puma
+set :normalize_asset_timestamps, false
 
 role :web, "zhusan.net"
 role :app, "zhusan.net"
