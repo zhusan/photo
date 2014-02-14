@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show]
   def index
     @q = Album.order("created_at desc").search(params[:q])
     @albums = @q.result(distinct: true).paginate(page: params[:page])
@@ -11,6 +11,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
+    @images = @album.images
     respond_to do |format|
       format.html # show.html.erb
     end
@@ -37,7 +38,7 @@ class AlbumsController < ApplicationController
       if @album.save
         format.js
       else
-        format.json { render json: @crm_deal_activity.errors, status: :unprocessable_entity }
+        format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -64,7 +65,7 @@ class AlbumsController < ApplicationController
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def album_param
-    params.require(:album).permit(:name, :note, :title_page_id)
+    params.require(:album).permit(:name, :note, :title_page_id, :tag_list)
   end
 
 end

@@ -1,7 +1,35 @@
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<%= hidden_field_tag :album_id, params[:id] %>
-<div id="dropbox">
-  <span class="message">Drop images here to upload. <br /><i>(they will only be visible to you)</i></span>
-</div>
+<div class="clearfix">
+  <%= hidden_field_tag :album_id, params[:id] %>
+  <% if user_signed_in? %>
+    <h1 class="clearfix">
+      <span class="pull-left">
+        相册:<%= @album.name %>
+      </span>
+      <%= link_to "新增照片", 'javascript:void(0)', class: "btn btn-primary pull-right", remote: true, 
+        onclick: "$(this).parent().next().toggle()" %>
+      </h1>
+
+      <div id="dropbox" style="display:none">
+        <span class="message">Drop images here to upload. <br /><i>(they will only be visible to you)</i></span>
+      </div>
+    <% end %>
+
+    <section class="ff-container">
+    <input id="select-type-all" name="radio-set-1" type="radio" class="ff-selector-type-all" checked="checked">
+    <label for="select-type-all" class="ff-label-type-all">All</label>
+    <div class="clr"></div>
+    <ul class="ff-items">
+      <% @images.each do |image| %>
+        <li class="ff-item-type-2">
+        <a href="#">
+          <span>Chameleon</span>
+          <%= image_tag image.little %>
+        </a>
+        </li>
+      <% end %>
+    </ul>
+    </section>
+  </div>

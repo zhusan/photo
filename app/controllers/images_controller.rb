@@ -28,7 +28,7 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new
     @image.url = params[:pic]
-    @image.album_id= params[:album_id]
+    @image.album_id= params[:id]
     @image.file_name = params[:pic].original_filename
     respond_to do |format|
       if @image.save

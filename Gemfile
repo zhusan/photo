@@ -66,4 +66,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 # gem 'qiniu-rs'
 gem 'carrierwave-qiniu'
-gem "ransack" #字段搜索及排序
+#字段搜索及排序
+gem "ransack" 
+#tags
+gem 'acts-as-taggable-on'
