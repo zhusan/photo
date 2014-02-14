@@ -73,6 +73,6 @@ gem 'acts-as-taggable-on'
 group :development do
   gem 'capistrano', '2.15.5'
 end
-
+gem 'whenever', :require => false
 gem 'puma', '~> 2.4.0' # Use unicorn as the app server
 
