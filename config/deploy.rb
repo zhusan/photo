@@ -41,7 +41,7 @@ namespace :deploy do
 
   desc "reload thedatabase with seed data"
   task :seed do
-    run"cd#{current_path}; rake db:seed RAILS_ENV=#{rails_env}"
+    run"cd #{current_path}; rake db:seed RAILS_ENV=#{rails_env}"
   end
 end
 
@@ -49,5 +49,5 @@ after "deploy:update_code", :bundle_install
 desc "install thenecessary prerequisites"
 
 task :bundle_install, :roles => :app do
-  run"cd#{release_path} && bundle install"
+  run"cd #{release_path} && bundle install"
 end
