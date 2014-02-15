@@ -10,17 +10,13 @@ set :application, "photo"
 set :scm, :git
 set :repository,  "git@github.com:zhusan/photo.git"
 
-gem 'capistrano-rbenv'
 set :branch, "master"
 set :stage, :production
 set :rails_env, "production"
 set :user, "zs"
 set :use_sudo, false
-gem 'capistrano-rbenv'
-gem 'capistrano-rbenv'
 set :deploy_to, "/home/zs/workspace/#{application}"
 set :app_server, :puma
-gem 'capistrano-rbenv'
 set :normalize_asset_timestamps, false
 
 role :web, "zhusan.net"
