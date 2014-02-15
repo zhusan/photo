@@ -51,6 +51,7 @@ after "deploy:update_code", :bundle_install
 desc "install thenecessary prerequisites"
 
 task :bundle_install, :roles => :app do
-  run "ln -sf  #{current_path}/config/settings.rb /home/zs/workspace/settings.rb"
+  run "ln -sf  #{current_path}/config/settings.yml /home/zs/workspace/settings.yml"
+  run "ln -sf  #{current_path}/config/database.yml /home/zs/workspace/database.yml"
   run"cd #{release_path} && bundle install"
 end
