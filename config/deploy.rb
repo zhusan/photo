@@ -27,6 +27,8 @@ set :branch, 'master'
 set :scm_verbose, true
 set :use_sudo, false
 set :rails_env, "production"
+set :normalize_asset_timestamps, false
+
 
 
 
@@ -49,5 +51,6 @@ after "deploy:update_code", :bundle_install
 desc "install thenecessary prerequisites"
 
 task :bundle_install, :roles => :app do
+  run "ln -sf  #{current_path}/config/settings.rb /home/zs/workspace/settings.rb"
   run"cd #{release_path} && bundle install"
 end
