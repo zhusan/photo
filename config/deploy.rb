@@ -1,29 +1,34 @@
-set :application, "set your application name here"
-require 'bundler/capistrano'
-require 'sidekiq/capistrano'
-require 'puma/capistrano'
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
+require "bundler/capistrano"
+require "sidekiq/capistrano"
 require "rvm/capistrano"
-set :rvm_ruby_string, 'ruby-2.0.0'
+require 'puma/capistrano'
+set :user, 'zs'            #存放web的用户名
+set :domain, 'zhusan.net'        #服务器IP
+set :application, 'photo'    #项目文件名，既将会在user里面创建这个名字的文件夹
+# adjust if you are using RVM, remove if you are not
+# $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+set :rvm_ruby_string, '2.0.0'
 set :rvm_type, :user
-set :application, "photo"
-
-set :scm, :git
-set :repository,  "git@github.com:zhusan/photo.git"
-
-set :branch, "master"
-set :stage, :production
-set :rails_env, "production"
-set :user, "zs"
-set :use_sudo, false
-set :deploy_to, "/home/zs/workspace/#{application}"
-set :app_server, :puma
-set :normalize_asset_timestamps, false
-
+# # file paths
+set :repository, "git@github.com:zhusan/photo.git"
+# #git所存在的地址，我存放在自己的服务器中
+set :deploy_to, "/home/zs/workspace/#{application}"  #部署的地址
+# # distribute your applications across servers (the instructions below put
+# them
+# # all on the same server, defined above as 'domain', adjust as necessary)
 role :web, "zhusan.net"
 role :app, "zhusan.net"
 role :db,  "zhusan.net", :primary => true
+ssh_options[:forward_agent] = true  #forward_agent方式
+# # miscellaneous options
+set :deploy_via, :remote_cache
+set :scm, 'git'
+set :branch, 'master'
+set :scm_verbose, true
+set :use_sudo, false
+set :rails_env, "production"
+
+
 
 
 
