@@ -4,7 +4,9 @@ require 'sidekiq/capistrano'
 require 'puma/capistrano'
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
-
+require "rvm/capistrano"
+set :rvm_ruby_string, 'ruby-2.0.0'
+set :rvm_type, :user
 set :application, "photo"
 
 set :scm, :git
