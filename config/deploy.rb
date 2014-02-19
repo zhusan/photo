@@ -31,9 +31,6 @@ set :normalize_asset_timestamps, false
 
 
 
-
-
-
 namespace :deploy do
   desc "cause Passenger to initiate a restart"
 
