@@ -7,7 +7,7 @@ class Album < ActiveRecord::Base
 
   def title_page
     image = Image.find_by_id(self.title_page_id)
-    return  image.little if image
+    return  image.get_style_image("little") if image
     ""
   end
 end

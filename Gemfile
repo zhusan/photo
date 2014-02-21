@@ -73,7 +73,20 @@ gem 'acts-as-taggable-on'
 group :development do
   gem 'capistrano', '2.15.5'
   gem 'rvm-capistrano', require: false
-  
+
+end
+
+group :development, :test do
+  gem "rspec-rails", "~> 2.14.0"
+  gem "factory_girl_rails", "~> 4.2.1"
+end
+
+group :test do
+  gem "faker", "~> 1.1.2"
+  gem "capybara", "~> 2.1.0"
+  gem "database_cleaner", "~> 1.0.1"
+  gem "launchy", "~> 2.3.0"
+  gem "selenium-webdriver"
 end
 gem 'whenever', :require => false
 gem 'puma', '~> 2.4.0' # Use unicorn as the app server
