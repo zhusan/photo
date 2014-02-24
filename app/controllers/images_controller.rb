@@ -2,7 +2,7 @@
 class ImagesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_image, only: [:show, :edit, :update, :destroy, :add_flower]
-  protect_from_forgery :except => [:create]
+  protect_from_forgery :except => [:create, :add_flower]
   # GET /images
   # GET /images.json
   def index
