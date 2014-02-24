@@ -1,8 +1,8 @@
 #encoding:utf-8
 class ImagesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:create, :add_flower]
   before_action :set_image, only: [:show, :edit, :update, :destroy, :add_flower]
-  protect_from_forgery :except => [:create, :add_flower]
+  protect_from_forgery :except => [:create]
   # GET /images
   # GET /images.json
   def index

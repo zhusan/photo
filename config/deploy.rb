@@ -44,10 +44,11 @@ namespace :deploy do
   end
 end
 
-after "deploy:update_code", :bundle_install
+after "deploy:update_code", :bundle_install, :compile_assets
 desc "install thenecessary prerequisites"
 
 task :bundle_install, :roles => :app do
+  run "ln -sf #{shared_path}/assets #{deploy_to}/current/public/assets"
   run "ln -sf  /home/zs/workspace/settings.yml #{release_path}/config/settings.yml"
   run "ln -sf  /home/zs/workspace/database.yml #{release_path}/config/database.yml"
   run"cd #{release_path} && bundle install"
