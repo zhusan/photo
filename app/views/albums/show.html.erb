@@ -1,6 +1,21 @@
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">大图</h4>
+      </div>
+      <div id="show_image">
+        <img src='' id="big_image" %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <div class="clearfix">
   <%= hidden_field_tag :album_id, params[:id] %>
   <% if user_signed_in? %>
@@ -24,8 +39,15 @@
     <ul class="ff-items">
       <% @images.each do |image| %>
         <li class="ff-item-type-2">
-        <a href="#">
-          <span>Chameleon</span>
+        <a href="javascript:void(0)">
+          <span class="show_note">
+            <i class="glyphicon glyphicon-heart pull-left" onclick="ajax_request('<%= images_add_flower_path(id: image.id) %>', 'put')">
+              <font id="flower_<%= image.id %>"><%= image.flowers %></font></i>
+            <br>
+            <div onclick="show_big_img('<%= image.get_style_image('big') %>')">
+              <%= image.note %>
+            </div>
+          </span>
           <%= image_tag image.get_style_image("little")%>
         </a>
         </li>

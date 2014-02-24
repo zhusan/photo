@@ -1,5 +1,7 @@
 Photo::Application.routes.draw do
   resources :albums
+
+  put "images/add_flower" => "images#add_flower"
   resources :images
 
   devise_for :users 

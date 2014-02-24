@@ -7,12 +7,16 @@ class Image < ActiveRecord::Base
 
   def set_title_page
     album = self.album
-    puts album.id
     album.update({title_page_id: self.id}) unless album.title_page_id
   end
 
 
   def get_style_image(style = 'little')
     self.url.to_s + "-" + style
+  end
+
+  def add_flower
+    self.flowers += 1
+    self.save
   end
 end

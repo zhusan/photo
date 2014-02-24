@@ -19,4 +19,12 @@ describe  Image do
   end
   it "#get-style_image" do
   end
+
+  it "#add_flower" do
+    album = Album.create({name: "test"})
+    image = Image.new({album_id: album.id})
+    image.save
+    image.add_flower
+    expect(image.flowers).to eq(1)
+  end
 end

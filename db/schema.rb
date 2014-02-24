@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214030007) do
+ActiveRecord::Schema.define(version: 20140224064526) do
 
   create_table "albums", force: true do |t|
     t.integer  "title_page_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140214030007) do
     t.integer  "file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "flowers",    default: 0
   end
 
   create_table "taggings", force: true do |t|

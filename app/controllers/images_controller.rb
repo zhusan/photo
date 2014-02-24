@@ -1,7 +1,7 @@
 #encoding:utf-8
 class ImagesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy, :add_flower]
   protect_from_forgery :except => [:create]
   # GET /images
   # GET /images.json
@@ -62,6 +62,14 @@ class ImagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to images_url }
       format.json { head :no_content }
+    end
+  end
+
+  # put /images/add_flower/1
+  def add_flower
+    @image.add_flower
+    respond_to do |format|
+      format.js
     end
   end
 
