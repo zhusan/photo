@@ -1,5 +1,4 @@
 <header>
-<h1>Login and Registration Form <span>with HTML5 and CSS3</span></h1>
 <section>
 <div id="container_demo">
   <a class="hiddenanchor" id="toregister"></a>
@@ -9,11 +8,11 @@
       <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div class="form-inputs">
           <p>
-          <label for="username" class="uname" data-icon="u"> Your email or username </label>
+          <label for="username" class="uname" data-icon="u">邮箱 </label>
           <%= f.input :email, label: false, :required => true, :autofocus => true, placeholder: "myusername or mymail@mail.com" %>
           </p>
           <p> 
-          <label for="password" class="youpasswd" data-icon="p"> Your password </label>
+          <label for="password" class="youpasswd" data-icon="p"> 密码</label>
           <%= f.input :password, label: false, :required => true%>
           </p>
           <p class="keeplogin"> 
@@ -21,15 +20,13 @@
           </p>
         </div>
         <p class="login button"> 
-        <%= f.button :submit, "Sign in" %>
+        <%= f.button :submit, "登录" %>
         </p>
-        <p class="change_link">
-        Not a member yet ?
-        <a href="#toregister" class="to_register">Join us</a>
-        </p>
+        <%= render "devise/shared/links" %>
       <% end %>
     </div>
-
+ <!--
+    <% if false %>
     <div id="register" class="animate form">
       <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
@@ -56,9 +53,10 @@
         </p>
       <% end %>
     </div>
+  <% end %>
+  -->
+
 
   </div>
 </div>  
 </section>
-<h2>Sign in</h2>
-<%= render "devise/shared/links" %>

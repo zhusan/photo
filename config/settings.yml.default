@@ -2,6 +2,14 @@ defaults: &defaults
   qiniu:
     qiniu_access_key: ""
     qiniu_secret_key: ""
+    qiniu_bucket: ""
+    qiniu_bucket_domain: ""
+    qiniu_block_size: 
+    qiniu_protocal: ""
+  omniauth:
+    github:
+      app_id: ""
+      app_secret: ""
 
 development:
   <<: *defaults

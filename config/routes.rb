@@ -4,7 +4,10 @@ Photo::Application.routes.draw do
   put "images/add_flower" => "images#add_flower"
   resources :images
 
-  devise_for :users 
+  devise_for :users, :controllers => {
+    :registrations =>  "users/registrations",
+    :omniauth_callbacks => "users/omniauth_callbacks"
+  }
   root  'homes#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
