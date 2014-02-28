@@ -22,7 +22,7 @@ header, footer{
 
 
 #dropbox{
-	background:url('background_tile_3.jpg');
+	background: image_url('background_tile_3.jpg');
 	
 	border-radius:3px;
 	position: relative;
@@ -89,7 +89,7 @@ header, footer{
 	left:0;
 	height:100%;
 	width:100%;
-	background: url('done.png') no-repeat center center rgba(255,255,255,0.5);
+	background: image_url('done.png') no-repeat center center rgba(255,255,255,0.5);
 	display: none;
 }
 
@@ -171,7 +171,7 @@ footer h2{
 }
 
 footer a.tzine,a.tzine:visited{
-	background:url("tzine.png") no-repeat right top;
+	background: image_url("tzine.png") no-repeat right top;
 	border:none;
 	text-decoration:none;
 	color:#FCFCFC;

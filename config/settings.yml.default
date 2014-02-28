@@ -6,10 +6,9 @@ defaults: &defaults
     qiniu_bucket_domain: ""
     qiniu_block_size: 
     qiniu_protocal: ""
-  omniauth:
-    github:
-      app_id: ""
-      app_secret: ""
+  github:
+    app_id: ""
+    app_secret: ""
 
 development:
   <<: *defaults
