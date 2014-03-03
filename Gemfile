@@ -100,3 +100,6 @@ gem "net-ssh", "~> 2.7.0"
 gem "omniauth", "~> 1.0.1"
 gem 'koala'
 gem "omniauth-github", "~> 1.1.0"
+
+#权限控制
+gem 'cancan'

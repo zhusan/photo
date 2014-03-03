@@ -1,8 +1,10 @@
 #encoding:utf-8
 class ImagesController < ApplicationController
+  load_and_authorize_resource
   before_filter :authenticate_user!, :except => [:create, :add_flower]
   before_action :set_image, only: [:show, :edit, :update, :destroy, :add_flower]
   protect_from_forgery :except => [:create]
+  skip_authorize_resource :only => [:add_flower]
   # GET /images
   # GET /images.json
   def index

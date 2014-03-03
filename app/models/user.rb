@@ -31,4 +31,18 @@ class User < ActiveRecord::Base
     end
     authorization.user
   end
+
+
+  def has_role?(r)
+    get_role == r
+  end
+
+  def get_role
+    case self.role
+    when 0
+      :admin
+    when 1
+      :member
+    end
+  end
 end

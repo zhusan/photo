@@ -34,6 +34,7 @@ GEM
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.1.4)
+    cancan (1.6.10)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -298,6 +299,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   bootstrap-sass (~> 3.1.0)
+  cancan
   capistrano (= 2.15.5)
   capybara (~> 2.1.0)
   carrierwave

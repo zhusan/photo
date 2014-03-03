@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226053939) do
+ActiveRecord::Schema.define(version: 20140303092957) do
 
   create_table "albums", force: true do |t|
     t.integer  "title_page_id"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140226053939) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "role",                   default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

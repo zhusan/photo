@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  load_and_authorize_resource
   before_filter :authenticate_user!, except: [:show]
   def index
     @q = Album.order("created_at desc").search(params[:q])

@@ -20,9 +20,11 @@
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <% if user_signed_in? %>
-      <li>
-      <%= link_to '新建相册', albums_path, 'data-skip-pjax' => true %>
-      </li>
+      <% if can? :manage, :album %>
+        <li>
+        <%= link_to '新建相册', albums_path, 'data-skip-pjax' => true %>
+        </li>
+      <% end %>
       <li>
       <%= link_to current_user.email, nil, 'data-skip-pjax' => true %>
       </li>
