@@ -62,6 +62,8 @@ gem 'simple_form', "3.0.1"
 # Faye Server 需要
 gem 'thin', "1.5.0"
 gem "private_pub"
+
+#图片上传
 gem 'carrierwave'
 gem 'mini_magick'
 # gem 'qiniu-rs'

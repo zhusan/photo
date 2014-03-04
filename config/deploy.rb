@@ -54,6 +54,6 @@ task :bundle_install, :roles => :app do
   run"cd #{release_path} && bundle install"
 end
 
-task :compile_assets, :roles => :web do
+task :compile_assets, :roles => :app do
   run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake assets:precompile"
 end
